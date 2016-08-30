@@ -26,7 +26,7 @@
       .state('meetings.multiplecreate', {
         url: '/multiplecreate',
         templateUrl: 'modules/meetings/client/views/form-multiple-meetings.client.view.html',
-        controller: 'MeetingsListController',
+        controller: 'MultipleMeetingsController',
         controllerAs: 'vm',
         resolve: {
           meetingResolve: newMeeting,
@@ -74,10 +74,13 @@
       .state('meetings.view', {
         url: '/:meetingId',
         templateUrl: 'modules/meetings/client/views/view-meeting.client.view.html',
-        controller: 'ViewMeetingsController',
+        controller: 'MeetingsController', 
         controllerAs: 'vm',
         resolve: {
           meetingResolve: getMeeting,
+          listFacilitiesResolve: getFacilities,
+          listApplicationsResolve: getApplications,
+          listCompaniesResolve: getCompanies
         },
         data:{
           pageTitle: 'Meeting {{ articleResolve.name }}'

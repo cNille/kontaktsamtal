@@ -21,6 +21,11 @@
     vm.remove = remove;
     vm.save = save;
 
+    vm.date = new Date('----', '--', '--', '--', '--', '--');
+    vm.time = new Date('----', '--', '--', '--', '--', '--');
+    vm.endDate = new Date('----', '--', '--', '--', '--', '--');
+    vm.endTime = new Date('----', '--', '--', '--', '--', '--');
+
     // Remove existing Meeting
     function remove() {
       if (confirm('Are you sure you want to delete?')) {
@@ -34,6 +39,12 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.meetingForm');
         return false;
       }
+
+      vm.meeting.facility = vm.facility;
+      vm.meeting.company = vm.company;
+      vm.meeting.student = vm.student;
+      vm.meeting.date = new Date(vm.date.getFullYear(), vm.date.getMonth(), vm.date.getDate(), vm.time.getHours(), vm.time.getMinutes());
+      vm.meeting.endDate = new Date(vm.endDate.getFullYear(), vm.endDate.getMonth(), vm.endDate.getDate(), vm.endTime.getHours(), vm.endTime.getMinutes());
 
       // TODO: move create/update logic to service
       if (vm.meeting._id) {
